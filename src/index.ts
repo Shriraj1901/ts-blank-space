@@ -575,15 +575,16 @@ function visitFunctionLikeDeclaration(node: ts.FunctionLikeDeclaration, kind: ts
         visitor(nodeName);
     }
 
+    // method?<T>()
+    // The `?` comes before the type parameters, BlankString expects ranges in source order.
+    node.questionToken && blankExact(node.questionToken);
+
     let moveOpenParen = false;
     const params = node.parameters;
     if (node.typeParameters && node.typeParameters.length) {
         moveOpenParen = spansLines(node.typeParameters.pos, params.pos);
         blankGenerics(node, node.typeParameters, moveOpenParen);
     }
-
-    // method?
-    node.questionToken && blankExact(node.questionToken);
 
     if (moveOpenParen) {
         str.blank(params.pos - 1, params.pos);

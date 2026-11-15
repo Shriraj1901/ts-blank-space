@@ -41,6 +41,8 @@ let g: Box<any>,
 (class {
     optionalMethod?(v: any) {}
 //                ^
+    optionalGenericMethod?<T>(v: T) {}
+//                       ^^^^  ^^^
 });
 
 (function f0(

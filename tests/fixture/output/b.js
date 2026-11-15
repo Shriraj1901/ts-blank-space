@@ -41,6 +41,8 @@ let g          ,
 (class {
     optionalMethod (v     ) {}
 //                ^
+    optionalGenericMethod    (v   ) {}
+//                       ^^^^  ^^^
 });
 
 (function f0(
